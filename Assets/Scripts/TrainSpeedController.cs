@@ -36,15 +36,15 @@ public class TrainSpeedController : MonoBehaviour
             if(Input.GetKeyUp(KeyCode.W))
             {
                 StartCoroutine(FuelToEngine(coalConsumptionMod));
+                CoalCosumption();
             }
 
             else if(Input.GetKeyUp(KeyCode.S))
             {
 
-                    StartCoroutine(ReleaseSteamFromEngine(-coalConsumptionMod));
+                StartCoroutine(ReleaseSteamFromEngine(coalConsumptionMod));
             }
 
-            CoalCosumption();
 
         }
         else
@@ -101,6 +101,8 @@ public class TrainSpeedController : MonoBehaviour
         coalConsumptionRate += coalConsumption;
         float target = trainSpeed + coalConsumptionRate * accelerationRate;
 
+        Debug.Log("Target acceleration" + target);
+
         while(timeElapsed<lerpDuration)
         {
 
@@ -116,6 +118,8 @@ public class TrainSpeedController : MonoBehaviour
         float timeElapsed=0f;
         coalConsumptionRate -= coalConsumption;
         float target = trainSpeed - (coalConsumptionRate * accelerationRate);
+
+        Debug.Log("Target Slowing down" + target);
 
         while(timeElapsed<lerpDuration)
         {
