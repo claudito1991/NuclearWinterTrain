@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int totalCoal;
+    public float totalCoal;
     Inventory inventory;
     // Start is called before the first frame update
 
@@ -30,16 +30,8 @@ public class Inventory : MonoBehaviour
 
     public void ConsumeCoal(float coalConsumption)
     {
-        if(coalConsumption>0)
-        {
-            totalCoal += (int)coalConsumption;
-            Debug.Log(coalConsumption);
-        }
-        else
-        {
-            totalCoal -= (int)coalConsumption;
-            Debug.Log(coalConsumption);
-        }
-        
+        totalCoal -= coalConsumption;
+        Debug.Log(coalConsumption);
     }
+
 }

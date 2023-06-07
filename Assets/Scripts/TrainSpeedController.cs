@@ -10,7 +10,6 @@ public class TrainSpeedController : MonoBehaviour
     [SerializeField] float coalConsumptionRate;
 
     [SerializeField] float coalConsumptionMod;
-    [SerializeField] float coalStock;
 
     [SerializeField] float accelerationRate;
     [SerializeField] int targetEnginePower;
@@ -18,7 +17,7 @@ public class TrainSpeedController : MonoBehaviour
     [SerializeField] WagonClassifier wagonClassifier;
 
     Inventory inventory;
-    [SerializeField] float lerpDuration;
+    [SerializeField] float reactionDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +30,11 @@ public class TrainSpeedController : MonoBehaviour
     {
         //ConsumeCoal(coalStock);
         CheckSpeedLimit();
-        if(inventory.totalCoal >= 0)
+        if(inventory.totalCoal > 0)
         {
             if(Input.GetKeyUp(KeyCode.W))
             {
                 StartCoroutine(FuelToEngine(coalConsumptionMod));
-                CoalCosumption();
             }
 
             else if(Input.GetKeyUp(KeyCode.S))
@@ -45,6 +43,8 @@ public class TrainSpeedController : MonoBehaviour
                 StartCoroutine(ReleaseSteamFromEngine(coalConsumptionMod));
             }
 
+            CoalCosumption();
+
 
         }
         else
@@ -52,11 +52,6 @@ public class TrainSpeedController : MonoBehaviour
             StartCoroutine(StopEngine());
         }
 
-    }
-
-    private void ConsumeCoal(float coalStock)
-    {
-        //inventory.totalCoal = ((int)coalStock);
     }
 
     private void CheckSpeedLimit()
@@ -72,11 +67,6 @@ public class TrainSpeedController : MonoBehaviour
         }
     }
 
-    private void StopTrain()
-    {
-        float lastSpeed = 
-        wagonClassifier.speed = Mathf.Lerp(wagonClassifier.speed, 0f, Time.deltaTime * 10f);
-    }
 
     private void CoalCosumption()
     {
@@ -85,15 +75,9 @@ public class TrainSpeedController : MonoBehaviour
         if (Mathf.Abs(inventory.totalCoal) < 0.3f)
         {
             inventory.totalCoal = 0;
+            coalConsumptionRate = 0;
         }
     }
-
-    // private void FuelToEngine()
-    // {
-    //     coalConsumptionRate += 0.1f;
-    //     trainSpeed = Mathf.Lerp(trainSpeed, trainSpeed * (1+coalConsumptionRate), Time.deltaTime);
-    //     wagonClassifier.speed = trainSpeed;
-    // }
 
     IEnumerator FuelToEngine(float coalConsumption)
     {
@@ -101,12 +85,12 @@ public class TrainSpeedController : MonoBehaviour
         coalConsumptionRate += coalConsumption;
         float target = trainSpeed + coalConsumptionRate * accelerationRate;
 
-        Debug.Log("Target acceleration" + target);
+        
 
-        while(timeElapsed<lerpDuration)
+        while(timeElapsed<reactionDelay)
         {
 
-            wagonClassifier.speed = Mathf.Lerp(trainSpeed, target, timeElapsed/lerpDuration);
+            wagonClassifier.speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -119,11 +103,10 @@ public class TrainSpeedController : MonoBehaviour
         coalConsumptionRate -= coalConsumption;
         float target = trainSpeed - (coalConsumptionRate * accelerationRate);
 
-        Debug.Log("Target Slowing down" + target);
 
-        while(timeElapsed<lerpDuration)
+        while(timeElapsed<reactionDelay)
         {
-            wagonClassifier.speed = Mathf.Lerp(trainSpeed, target, timeElapsed/lerpDuration);
+            wagonClassifier.speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -135,9 +118,9 @@ public class TrainSpeedController : MonoBehaviour
         float timeElapsed=0f;
         float target = 0f;
 
-        while(timeElapsed<lerpDuration)
+        while(timeElapsed<reactionDelay)
         {
-            wagonClassifier.speed = Mathf.Lerp(wagonClassifier.speed, target, timeElapsed/lerpDuration);
+            wagonClassifier.speed = Mathf.Lerp(wagonClassifier.speed, target, timeElapsed/reactionDelay);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
