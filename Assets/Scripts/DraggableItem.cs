@@ -6,16 +6,34 @@ using UnityEngine.EventSystems;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Item item;
+    
 
     [Header("UI")]
-    [HideInInspector] public Image image;
+    public Image image;
+    public Text countText;
+
+    public int  coalAmount;
+
+    [HideInInspector] public Item item;
+    [HideInInspector] public int count = 1;
+
+    
     [HideInInspector] public Transform parentAfterDrag;
 
     public void InitialiseItem(Item newItem)
     {
         item = newItem;
         image.sprite = newItem.image;
+        RefreshCount();
+    }
+
+
+
+    public void RefreshCount()
+    {
+        countText.text = count.ToString();
+        bool textActive = count>1;
+        countText.gameObject.SetActive(textActive);
     }
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {

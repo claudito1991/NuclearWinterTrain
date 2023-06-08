@@ -24,6 +24,11 @@ public class coal : MonoBehaviour
         return coalAmount;
     }
 
+    public int GetCoalAmount()
+    {
+        return coalAmount;
+    }
+
     public void CoalInteraction()
     {
         AddCoalToInventory?.Invoke(coalAmount);
