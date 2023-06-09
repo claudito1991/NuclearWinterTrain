@@ -34,6 +34,7 @@ public class TrainSpeedController : MonoBehaviour
         {
             if(Input.GetKeyUp(KeyCode.W))
             {
+                
                 StartCoroutine(FuelToEngine(coalConsumptionMod));
             }
 

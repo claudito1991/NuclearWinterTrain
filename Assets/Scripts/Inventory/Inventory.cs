@@ -5,25 +5,54 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public float totalCoal;
-    Inventory inventory;
     ShowCoalUI coalUI;
+    [SerializeField] PressureBar pressureBar;
+    public float totalCoal;
+    public float totalPressure;
+    public float pressureLossRate;
+    public int maxPressure;
+    public int energyConversionModifier = 1;
+    //Inventory inventory;
+
+
+
+
     // Start is called before the first frame update
 
     void Start()
     {
-        inventory = FindObjectOfType<Inventory>();
+        //inventory = FindObjectOfType<Inventory>();
         coalUI = FindObjectOfType<ShowCoalUI>();
+
+        coalUI.UpdateCoalInUI(((int)totalCoal));
+    }
+
+    void Update()
+    {
+        LosingPressureOverTime();
+        pressureBar.SetPressure(totalPressure);
     }
     void OnEnable()
     {
+        pressureBar.SetMaxPressure(maxPressure);
         InventorySlot.AddCoalToInventory += AddCoal;
     }
 
     private void AddCoal(int obj)
     {
         totalCoal += obj;
+        AddPressure(obj);
         coalUI.UpdateCoalInUI(((int)totalCoal));
+    }
+
+    private void LosingPressureOverTime()
+    {
+        totalPressure -= Time.deltaTime * pressureLossRate;
+    }
+
+    private void AddPressure(float coalAdded)
+    {
+        totalPressure += coalAdded * energyConversionModifier;
     }
 
     void OnDisable()
@@ -34,7 +63,7 @@ public class Inventory : MonoBehaviour
     public void ConsumeCoal(float coalConsumption)
     {
         totalCoal -= coalConsumption;
-        Debug.Log(coalConsumption);
+        coalUI.UpdateCoalInUI(((int)totalCoal));
     }
 
 }

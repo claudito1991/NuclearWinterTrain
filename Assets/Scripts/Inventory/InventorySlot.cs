@@ -23,6 +23,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             int coal = dropped.GetComponent<DraggableItem>().count;
             draggableItem.parentAfterDrag = transform;
             AddCoalToInventory?.Invoke(coal);
+            Destroy(dropped);
             Debug.Log("IN BOILER " + coal.ToString());
 
         }

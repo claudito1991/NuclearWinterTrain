@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7a9da0581be0b4cac7be42a97c40f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCoalAmount: 15
-  minCoalAmount: 5
+  maxCoalAmount: 25
+  minCoalAmount: 50
   coalAmount: 0
 --- !u!65 &5467127987652788725
 BoxCollider:
