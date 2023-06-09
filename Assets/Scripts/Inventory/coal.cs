@@ -8,10 +8,9 @@ public class coal : MonoBehaviour
 
     [SerializeField] int maxCoalAmount;
     [SerializeField] int minCoalAmount;
-
     [SerializeField] int coalAmount;
 
-    public static Action <int> AddCoalToInventory;
+   // public static Action <int> AddCoalToInventory;
 
     void Start()
     {
@@ -31,12 +30,12 @@ public class coal : MonoBehaviour
 
     public void CoalInteraction()
     {
-        AddCoalToInventory?.Invoke(coalAmount);
+        //AddCoalToInventory?.Invoke(coalAmount);
     }
 
     void OnMouseDown()
     {
-        CoalInteraction();
+        //CoalInteraction();
         Destroy(gameObject);
     }
 

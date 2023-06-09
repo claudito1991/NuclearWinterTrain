@@ -12,8 +12,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
     public Text countText;
 
-    public int  coalAmount;
-
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
 

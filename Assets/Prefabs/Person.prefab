@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5467127987652788724
+--- !u!1 &6519768285678253961
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5467127987652788721}
-  - component: {fileID: 5467127987652788720}
-  - component: {fileID: 5467127987652788723}
-  - component: {fileID: 5467127987652788722}
-  - component: {fileID: 5467127987652788725}
-  - component: {fileID: 4349655456915278359}
+  - component: {fileID: 6519768285678253964}
+  - component: {fileID: 6519768285678253965}
+  - component: {fileID: 6519768285678253966}
+  - component: {fileID: 6519768285678253967}
+  - component: {fileID: 6519768285678253960}
+  - component: {fileID: 3312654612285619306}
   m_Layer: 0
-  m_Name: coal (5)
+  m_Name: Person
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5467127987652788721
+--- !u!4 &6519768285678253964
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467127987652788724}
+  m_GameObject: {fileID: 6519768285678253961}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 36.6, y: 10.7, z: -9.4}
+  m_LocalPosition: {x: 36.6, y: 7.96, z: 2.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!33 &5467127987652788720
+--- !u!33 &6519768285678253965
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467127987652788724}
-  m_Mesh: {fileID: -1579241630799410176, guid: 05635f59c72e18b4cb2caa9d1cec0aa5, type: 3}
---- !u!23 &5467127987652788723
+  m_GameObject: {fileID: 6519768285678253961}
+  m_Mesh: {fileID: 4711208715938537054, guid: d4482803d05ab5249b28bb3ca108bc09, type: 3}
+--- !u!23 &6519768285678253966
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467127987652788724}
+  m_GameObject: {fileID: 6519768285678253961}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,14 +86,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5467127987652788722
+--- !u!114 &6519768285678253967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467127987652788724}
-  m_Enabled: 1
+  m_GameObject: {fileID: 6519768285678253961}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7a9da0581be0b4cac7be42a97c40f2, type: 3}
   m_Name: 
@@ -101,31 +101,31 @@ MonoBehaviour:
   maxCoalAmount: 15
   minCoalAmount: 5
   coalAmount: 0
---- !u!65 &5467127987652788725
+--- !u!65 &6519768285678253960
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467127987652788724}
+  m_GameObject: {fileID: 6519768285678253961}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.8445961, y: 1.3913288, z: 3.2504606}
   m_Center: {x: -0.05854082, y: 0.64873195, z: -0.25667506}
---- !u!114 &4349655456915278359
+--- !u!114 &3312654612285619306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467127987652788724}
+  m_GameObject: {fileID: 6519768285678253961}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fdee5b9ddd076440a5c87e62889844c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
-  itemToPickUp: {fileID: 11400000, guid: 521f9e6e2925faa42b67fa7af2edc648, type: 2}
-  coal: {fileID: 5467127987652788722}
+  itemToPickUp: {fileID: 11400000, guid: 1f68569461587704096b8734467c2e7a, type: 2}
+  coal: {fileID: 6519768285678253967}

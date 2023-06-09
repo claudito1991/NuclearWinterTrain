@@ -7,25 +7,28 @@ public class Inventory : MonoBehaviour
 {
     public float totalCoal;
     Inventory inventory;
+    ShowCoalUI coalUI;
     // Start is called before the first frame update
 
     void Start()
     {
         inventory = FindObjectOfType<Inventory>();
+        coalUI = FindObjectOfType<ShowCoalUI>();
     }
     void OnEnable()
     {
-        coal.AddCoalToInventory += AddCoalToInventory;
+        InventorySlot.AddCoalToInventory += AddCoal;
     }
 
-    private void AddCoalToInventory(int obj)
+    private void AddCoal(int obj)
     {
         totalCoal += obj;
+        coalUI.UpdateCoalInUI(((int)totalCoal));
     }
 
     void OnDisable()
     {
-        coal.AddCoalToInventory -= AddCoalToInventory;
+        InventorySlot.AddCoalToInventory -= AddCoal;
     }
 
     public void ConsumeCoal(float coalConsumption)
