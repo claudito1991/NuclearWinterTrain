@@ -7,6 +7,7 @@ using Dreamteck.Splines;
 public class TrainSpeedController : MonoBehaviour
 {
     [SerializeField] float trainSpeed;
+    [SerializeField] int newTrainSpeed;
     [SerializeField] float coalConsumptionRate;
 
     [SerializeField] float coalConsumptionMod;
@@ -15,6 +16,7 @@ public class TrainSpeedController : MonoBehaviour
     [SerializeField] int targetEnginePower;
 
     [SerializeField] WagonClassifier wagonClassifier;
+    [SerializeField] SpeedHandle speedHandle;
 
     Inventory inventory;
     [SerializeField] float reactionDelay;
@@ -34,26 +36,66 @@ public class TrainSpeedController : MonoBehaviour
         {
             if(Input.GetKeyUp(KeyCode.W))
             {
-                
-                StartCoroutine(FuelToEngine(coalConsumptionMod));
+
+                //StartCoroutine(FuelToEngine(coalConsumptionMod));
             }
 
             else if(Input.GetKeyUp(KeyCode.S))
             {
 
-                StartCoroutine(ReleaseSteamFromEngine(coalConsumptionMod));
+                //StartCoroutine(ReleaseSteamFromEngine(coalConsumptionMod));
             }
 
             CoalCosumption();
 
 
         }
+
+        
         else
         {
             StartCoroutine(StopEngine());
         }
 
     }
+
+    void OnEnable()
+    {
+        speedHandle.HandleMoved += SpeedChanged;
+    }
+
+    public void SpeedChanged(int value)
+    {
+        switch (value)
+        {
+        case 4:
+            print ("SPEED 15");
+            StartCoroutine(FuelToEngine(5.0f));
+            break;
+        case 3:
+            print ("SPEED 12");
+            StartCoroutine(FuelToEngine(3.0f));
+            break;
+        case 2:
+            print ("SPEED 8");
+            StartCoroutine(FuelToEngine(2.0f));
+            break;
+        case 1:
+            print ("SPEED 3");
+            StartCoroutine(FuelToEngine(1.0f));
+            break;
+        default:
+            print ("Roto");
+            StartCoroutine(FuelToEngine(0.0f));
+            break;
+        }
+    }
+
+    void OnDisable()
+    {
+        speedHandle.HandleMoved -= SpeedChanged;
+    }
+
 
     private void CheckSpeedLimit()
     {
