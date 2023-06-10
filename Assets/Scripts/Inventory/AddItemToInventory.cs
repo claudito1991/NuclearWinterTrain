@@ -8,6 +8,11 @@ public class AddItemToInventory : MonoBehaviour
     public Item itemToPickUp;
 
     public coal coal;
+
+    void Start()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+    }
     // Start is called before the first frame update
     
     void OnMouseDown()

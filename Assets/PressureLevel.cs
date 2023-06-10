@@ -33,6 +33,7 @@ public class PressureLevel : MonoBehaviour
         private void LosingPressureOverTime()
     {
         totalPressure -= Time.deltaTime * pressureLossRate;
+    
     }
 
 

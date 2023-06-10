@@ -26,6 +26,7 @@ public class TrainSpeedController : MonoBehaviour
 
     Inventory inventory;
     [SerializeField] float reactionDelay;
+    [SerializeField] private int trainSpeedModifier;
 
     // Start is called before the first frame update
     void Start()
@@ -77,7 +78,15 @@ public class TrainSpeedController : MonoBehaviour
                 StopCoroutine(speedChange);
                 speedChange = null;
             }
-            speedChange =  StartCoroutine(FuelToEngine(value));
+            if(value>0)
+            {
+                speedChange =  StartCoroutine(FuelToEngine(value*trainSpeedModifier));
+            }
+            else
+            {
+                speedChange =  StartCoroutine(FuelToEngine(value));
+            }
+           
         }
 
 
@@ -149,6 +158,7 @@ public class TrainSpeedController : MonoBehaviour
             yield return null;
         }
         wagonClassifier.Speed = target;
+        trainSpeed = target;
     }
 
 }
