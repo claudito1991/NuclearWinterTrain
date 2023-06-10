@@ -6,8 +6,15 @@ using UnityEngine;
 public class WagonClassifier: MonoBehaviour 
 {
     public int order; 
-    public float speed; 
+    [SerializeField] private float speed;
+    public float Speed {
+        get => speed; 
+        set {speed=Mathf.Clamp(value,0,50);
+        Debug.Log("Speed changed in setter" + speed.ToString());}
+        }
     public bool isEngine;
+
+
     public WagonClassifier(int order, float speed, bool isEngine)
     {
         this.order = order;

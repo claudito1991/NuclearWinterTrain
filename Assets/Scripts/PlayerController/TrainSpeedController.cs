@@ -15,6 +15,8 @@ public class TrainSpeedController : MonoBehaviour
     [SerializeField] float accelerationRate;
     [SerializeField] int targetEnginePower;
 
+    Coroutine speedChange;
+
     [SerializeField] WagonClassifier wagonClassifier;
     [SerializeField] SpeedHandle speedHandle;
 
@@ -25,13 +27,13 @@ public class TrainSpeedController : MonoBehaviour
     void Start()
     {
         inventory = FindObjectOfType<Inventory>();
+        wagonClassifier.Speed = trainSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
         //ConsumeCoal(coalStock);
-        CheckSpeedLimit();
         if(inventory.totalCoal > 0)
         {
             if(Input.GetKeyUp(KeyCode.W))
@@ -64,32 +66,16 @@ public class TrainSpeedController : MonoBehaviour
         speedHandle.HandleMoved += SpeedChanged;
     }
 
-    public void SpeedChanged(int value)
-    {
-        switch (value)
+    public void SpeedChanged(int value )
         {
-        case 4:
-            print ("SPEED 15");
-            StartCoroutine(FuelToEngine(5.0f));
-            break;
-        case 3:
-            print ("SPEED 12");
-            StartCoroutine(FuelToEngine(3.0f));
-            break;
-        case 2:
-            print ("SPEED 8");
-            StartCoroutine(FuelToEngine(2.0f));
-            break;
-        case 1:
-            print ("SPEED 3");
-            StartCoroutine(FuelToEngine(1.0f));
-            break;
-        default:
-            print ("Roto");
-            StartCoroutine(FuelToEngine(0.0f));
-            break;
+            if(speedChange != null)
+            {
+                StopCoroutine(speedChange);
+                speedChange = null;
+            }
+            speedChange =  StartCoroutine(FuelToEngine(value+10));
         }
-    }
+
 
     void OnDisable()
     {
@@ -97,18 +83,6 @@ public class TrainSpeedController : MonoBehaviour
     }
 
 
-    private void CheckSpeedLimit()
-    {
-        if(wagonClassifier.speed < 0f)
-        {
-            wagonClassifier.speed = 0f;
-        }
-
-        else if(wagonClassifier.speed > 10f)
-        {
-            wagonClassifier.speed = 10f;
-        }
-    }
 
 
     private void CoalCosumption()
@@ -125,19 +99,22 @@ public class TrainSpeedController : MonoBehaviour
     IEnumerator FuelToEngine(float coalConsumption)
     {
         float timeElapsed=0f;
-        coalConsumptionRate += coalConsumption;
-        float target = trainSpeed + coalConsumptionRate * accelerationRate;
+        //coalConsumptionRate += coalConsumption;
+        coalConsumptionRate = coalConsumption;
+        //float target = trainSpeed + coalConsumptionRate * accelerationRate;
+        //float target = trainSpeed + coalConsumptionRate;
+        float target = coalConsumptionRate;
 
-        
+        Debug.Log("Target speed is: " + target.ToString());
 
         while(timeElapsed<reactionDelay)
         {
-
-            wagonClassifier.speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
             timeElapsed += Time.deltaTime;
+            wagonClassifier.Speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
             yield return null;
         }
-        wagonClassifier.speed = target;
+        wagonClassifier.Speed = target;
+        trainSpeed = target;
     }
 
     IEnumerator ReleaseSteamFromEngine(float coalConsumption)
@@ -149,11 +126,11 @@ public class TrainSpeedController : MonoBehaviour
 
         while(timeElapsed<reactionDelay)
         {
-            wagonClassifier.speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
+            wagonClassifier.Speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        wagonClassifier.speed = target;
+        wagonClassifier.Speed = target;
     }
 
         IEnumerator StopEngine()
@@ -163,11 +140,11 @@ public class TrainSpeedController : MonoBehaviour
 
         while(timeElapsed<reactionDelay)
         {
-            wagonClassifier.speed = Mathf.Lerp(wagonClassifier.speed, target, timeElapsed/reactionDelay);
+            wagonClassifier.Speed = Mathf.Lerp(wagonClassifier.Speed, target, timeElapsed/reactionDelay);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        wagonClassifier.speed = target;
+        wagonClassifier.Speed = target;
     }
 
 }

@@ -17,25 +17,25 @@ public class SpeedController : MonoBehaviour
     {
         splineFollower = GetComponent<SplineFollower>();
         wagonClassifier = GetComponent<WagonClassifier>();
-        wagonClassifiers = GetComponentsInChildren<WagonClassifier>().ToList();
+        wagonClassifiers = GetComponentsInChildren<WagonClassifier>().Where(x=> x != wagonClassifier).ToList();
     }
     // Update is called once per frame
     void Update()
     {
         if(wagonClassifier.isEngine)
         {
-            splineFollower.followSpeed = Mathf.Lerp(splineFollower.followSpeed, wagonClassifier.speed, Time.deltaTime * 1f) ;
+            splineFollower.followSpeed = Mathf.Lerp(splineFollower.followSpeed, wagonClassifier.Speed, Time.deltaTime * 1f) ;
             currentSpeed = splineFollower.followSpeed;
         }
 
         else
         {
-            splineFollower.followSpeed = wagonClassifier.speed;
+            splineFollower.followSpeed = wagonClassifier.Speed;
         }
 
         foreach(WagonClassifier wagon in wagonClassifiers)
         {
-            wagon.speed = currentSpeed;
+            wagon.Speed = currentSpeed;
         }
     }
 

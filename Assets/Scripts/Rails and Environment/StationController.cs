@@ -25,7 +25,7 @@ public class StationController : MonoBehaviour
         Debug.Log("Slow down train");
         foreach(WagonClassifier wagon in wagonClassifiers)
         {
-           wagon.speed = 0;
+           wagon.Speed = 0;
         }
     }
 
