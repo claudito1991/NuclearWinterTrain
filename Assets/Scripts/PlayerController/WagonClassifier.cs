@@ -9,7 +9,7 @@ public class WagonClassifier: MonoBehaviour
     [SerializeField] private float speed;
     public float Speed {
         get => speed; 
-        set {speed=Mathf.Clamp(value,0,50);
+        set {speed=Mathf.Clamp(value,0,15);
         Debug.Log("Speed changed in setter" + speed.ToString());}
         }
     public bool isEngine;

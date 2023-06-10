@@ -7,6 +7,10 @@ using Dreamteck.Splines;
 public class TrainSpeedController : MonoBehaviour
 {
     [SerializeField] float trainSpeed;
+    
+    public float TrainSpeed {
+        get{return trainSpeed;}
+        }
     [SerializeField] int newTrainSpeed;
     [SerializeField] float coalConsumptionRate;
 
@@ -73,7 +77,7 @@ public class TrainSpeedController : MonoBehaviour
                 StopCoroutine(speedChange);
                 speedChange = null;
             }
-            speedChange =  StartCoroutine(FuelToEngine(value+10));
+            speedChange =  StartCoroutine(FuelToEngine(value));
         }
 
 
