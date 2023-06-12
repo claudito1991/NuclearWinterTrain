@@ -16,7 +16,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             draggableItem.parentAfterDrag = transform;
         }
 
-        if(transform.GetComponent<InventoryBoiler>())
+        else if(transform.GetComponent<InventoryBoiler>())
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
@@ -25,6 +25,17 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             AddCoalToInventory?.Invoke(coal);
             Destroy(dropped);
             Debug.Log("IN BOILER " + coal.ToString());
+
+        }
+
+        else if(transform.GetComponent<StationInventory>())
+        {
+            GameObject dropped = eventData.pointerDrag;
+            DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+            int coal = dropped.GetComponent<DraggableItem>().count;
+            draggableItem.parentAfterDrag = transform;
+            //AddCoalToInventory?.Invoke(coal);
+            Debug.Log("IN STATION " + coal.ToString());
 
         }
 
