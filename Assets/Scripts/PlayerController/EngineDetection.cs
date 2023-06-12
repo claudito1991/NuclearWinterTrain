@@ -8,25 +8,23 @@ public class EngineDetection : MonoBehaviour
 {
     WagonClassifier wagonClassifier;
 
-    public Action TrainInStation;
-    bool isTrainInStation;
+    public Action<bool> TrainInStation;
+    bool isTrainInStation = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<WagonClassifier>().isEngine)
         {
-            FireStationTrigger();
-        }
-
-        else
-        {
-            Debug.Log("nada");
+            isTrainInStation = !isTrainInStation;
+            FireStationTrigger(isTrainInStation);
+            Debug.Log("Triggered station");
+            
         }
     }
 
-    private void FireStationTrigger()
+    private void FireStationTrigger(bool stationState)
     {
-        TrainInStation?.Invoke();
+        TrainInStation?.Invoke(stationState);
     }
     // Start is called before the first frame update
 

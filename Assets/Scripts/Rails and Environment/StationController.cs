@@ -8,6 +8,8 @@ public class StationController : MonoBehaviour
 {
     [SerializeField] EngineDetection engineDetection;
     [SerializeField] List<WagonClassifier> wagonClassifiers;
+
+    [SerializeField] GameObject stationInventory;
     void Start()
     {
         //engineDetection = GetComponentInChildren<EngineDetection>();
@@ -17,7 +19,7 @@ public class StationController : MonoBehaviour
 
     void OnEnable()
     {
-        engineDetection.TrainInStation += SlowDownTrain;
+        engineDetection.TrainInStation += ShowStationInventory;
     }
 
     private void SlowDownTrain()
@@ -27,6 +29,12 @@ public class StationController : MonoBehaviour
         {
            wagon.Speed = 0;
         }
+    }
+
+    private void ShowStationInventory(bool stationInvState)
+    {
+        Debug.Log("Trigger bool " + stationInvState.ToString());
+        stationInventory.SetActive(stationInvState);
     }
 
     // Start is called before the first frame update
@@ -41,7 +49,7 @@ public class StationController : MonoBehaviour
 
     void OnDisable()
     {
-        engineDetection.TrainInStation -= SlowDownTrain;
+        engineDetection.TrainInStation -= ShowStationInventory;
     }
 
 
