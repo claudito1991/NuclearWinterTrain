@@ -2,22 +2,35 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class EngineDetection : MonoBehaviour
 {
     WagonClassifier wagonClassifier;
 
     public Action<bool> TrainInStation;
-    bool isTrainInStation = false;
+    [SerializeField] bool isTrainInStation = false;
+
 
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<WagonClassifier>().isEngine)
         {
-            isTrainInStation = !isTrainInStation;
-            FireStationTrigger(isTrainInStation);
-            Debug.Log("Triggered station");
+            isTrainInStation = true;
+            //FireStationTrigger(isTrainInStation);
+            TrainInStation?.Invoke(isTrainInStation);
+            Debug.Log("Triggered enter station");
+            
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<WagonClassifier>().isEngine)
+        {
+            isTrainInStation = false;
+            //FireStationTrigger(isTrainInStation);
+            TrainInStation?.Invoke(isTrainInStation);
+            Debug.Log("Triggered exit station");
             
         }
     }

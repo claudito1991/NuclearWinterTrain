@@ -16,7 +16,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             draggableItem.parentAfterDrag = transform;
         }
 
-        else if(transform.GetComponent<InventoryBoiler>())
+        if(transform.GetComponent<InventoryBoiler>())
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
@@ -28,7 +28,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
         }
 
-        else if(transform.GetComponent<StationInventory>())
+        if(transform.GetComponent<StationInventory>())
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
