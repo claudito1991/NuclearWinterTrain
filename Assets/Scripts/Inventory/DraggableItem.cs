@@ -12,6 +12,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
     public Text countText;
 
+    public ItemType itemType;
+
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
 
@@ -22,6 +24,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         item = newItem;
         image.sprite = newItem.image;
+        itemType = newItem.type;
         RefreshCount();
     }
 

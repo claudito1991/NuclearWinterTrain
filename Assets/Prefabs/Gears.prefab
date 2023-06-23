@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8564180543326974001}
   - component: {fileID: 8564180543326974000}
   - component: {fileID: 8564180543326974003}
-  - component: {fileID: 8564180543326974002}
   - component: {fileID: 8564180543326974005}
   - component: {fileID: 96866646852025303}
-  m_Layer: 0
+  - component: {fileID: -8277608701589891903}
+  m_Layer: 3
   m_Name: Gears
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8564180543326974004}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 48.62, y: 9.32, z: 1.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8564180543326974004}
-  m_Mesh: {fileID: -1579241630799410176, guid: 05635f59c72e18b4cb2caa9d1cec0aa5, type: 3}
+  m_Mesh: {fileID: 4773957342414908015, guid: c0975f48ca2fa0646ad5ef0433afbdcb, type: 3}
 --- !u!23 &8564180543326974003
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86,21 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8564180543326974002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8564180543326974004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a7a9da0581be0b4cac7be42a97c40f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxCoalAmount: 45
-  minCoalAmount: 70
-  coalAmount: 0
 --- !u!65 &8564180543326974005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.8445961, y: 1.3913288, z: 3.2504606}
-  m_Center: {x: -0.05854082, y: 0.64873195, z: -0.25667506}
+  m_Size: {x: 4.419464, y: 1.3913288, z: 3.3583286}
+  m_Center: {x: 0.18955493, y: 0.64873195, z: 0.5523319}
 --- !u!114 &96866646852025303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +111,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdee5b9ddd076440a5c87e62889844c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 0}
+  trainInventory: {fileID: 0}
+  stationInventory: {fileID: 0}
+  currentInventory: 0
   itemToPickUp: {fileID: 11400000, guid: 9abe6e9a9d3b45e47ba125f564b81bf5, type: 2}
-  coal: {fileID: 8564180543326974002}
+  coal: {fileID: -8277608701589891903}
+--- !u!114 &-8277608701589891903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564180543326974004}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7a9da0581be0b4cac7be42a97c40f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCoalAmount: 0
+  minCoalAmount: 0
+  coalAmount: 0

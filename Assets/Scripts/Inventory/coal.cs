@@ -33,10 +33,10 @@ public class coal : MonoBehaviour
         //AddCoalToInventory?.Invoke(coalAmount);
     }
 
-    void OnMouseDown()
-    {
-        //CoalInteraction();
-        Destroy(gameObject);
-    }
+    // void OnMouseDown()
+    // {
+    //     //CoalInteraction();
+    //     Destroy(gameObject);
+    // }
 
 }

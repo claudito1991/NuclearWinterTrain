@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6519768285678253967}
   - component: {fileID: 6519768285678253960}
   - component: {fileID: 3312654612285619306}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Person
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdee5b9ddd076440a5c87e62889844c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 0}
+  trainInventory: {fileID: 0}
+  stationInventory: {fileID: 0}
+  currentInventory: 0
   itemToPickUp: {fileID: 11400000, guid: 1f68569461587704096b8734467c2e7a, type: 2}
   coal: {fileID: 6519768285678253967}

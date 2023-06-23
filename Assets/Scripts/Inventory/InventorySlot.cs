@@ -20,11 +20,30 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+            if(draggableItem.itemType != ItemType.Energy)
+            {
+                Destroy(dropped);
+            }
             int coal = dropped.GetComponent<DraggableItem>().count;
             draggableItem.parentAfterDrag = transform;
             AddCoalToInventory?.Invoke(coal);
             Destroy(dropped);
-            Debug.Log("IN BOILER " + coal.ToString());
+            //Debug.Log("IN BOILER " + coal.ToString());
+
+        }
+            if(transform.GetComponent<MaintenanceInventory>())
+        {
+            GameObject dropped = eventData.pointerDrag;
+            DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+            if(draggableItem.itemType != ItemType.SpareParts)
+            {
+                Destroy(dropped);
+            }
+            //int coal = dropped.GetComponent<DraggableItem>().count;
+            draggableItem.parentAfterDrag = transform;
+            //Destroy(dropped);
+            
+            Debug.Log("In Manteinance ");
 
         }
 
@@ -34,8 +53,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
             int coal = dropped.GetComponent<DraggableItem>().count;
             draggableItem.parentAfterDrag = transform;
-            //AddCoalToInventory?.Invoke(coal);
-            Debug.Log("IN STATION " + coal.ToString());
+            //Debug.Log("IN STATION " + coal.ToString());
 
         }
 
