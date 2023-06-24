@@ -10,24 +10,48 @@ public class PressureLevel : MonoBehaviour
     [SerializeField] PressureBar pressureBar;
 
     [SerializeField] private float totalPressure;
+    public float CurrentPressure{get{ return totalPressure;}}
     [SerializeField] private float maxPressure;
+    public float MaxPressure{get{ return maxPressure;}}
     [SerializeField] private float energyConversionModifier;
     [SerializeField] private float pressureLossRate;
 
 
     void Update()
     {
-        LosingPressureOverTime();
-        pressureBar.SetPressure(totalPressure);
+        if(totalPressure>maxPressure)
+        {
+            totalPressure = maxPressure;
+        }
+        //SetPressureInInv(); 
     }
-    void OnEnable()
+
+    void Start()
     {
         pressureBar.SetMaxPressure(maxPressure);
+    }
+
+    public void SetPressureInInv(int pressureToSet)
+    {
+        pressureBar.SetPressure(pressureToSet);
+    }
+
+    void OnEnable()
+    {
+        //pressureBar.SetMaxPressure(maxPressure);
     }
     
     public void AddPressure(float coalAdded)
     {
-        totalPressure += coalAdded * energyConversionModifier;
+        if(totalPressure> maxPressure)
+        {
+            totalPressure = maxPressure;
+        }
+        else
+        {
+            totalPressure += coalAdded;
+        }
+
     }
 
         private void LosingPressureOverTime()

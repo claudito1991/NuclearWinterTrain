@@ -31,9 +31,9 @@ public class SendRosourcesToStation : MonoBehaviour
         
             UnityEngine.Events.UnityAction miAccion = AddItemsToInventory;
             sendResButton.onClick.RemoveAllListeners();
-            Debug.Log("Listener removed");
+            //Debug.Log("Listener removed");
             sendResButton.onClick.AddListener(miAccion);
-            Debug.Log("Listener added");
+            //Debug.Log("Listener added");
         
 
     }

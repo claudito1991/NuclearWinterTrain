@@ -12,11 +12,11 @@ public class TrainSpeedController : MonoBehaviour
         get{return trainSpeed;}
         }
     [SerializeField] int newTrainSpeed;
-    [SerializeField] float coalConsumptionRate;
+    private float coalConsumptionRate;
 
-    [SerializeField] float coalConsumptionMod;
+    //[SerializeField] float coalConsumptionMod;
 
-    [SerializeField] float accelerationRate;
+    //[SerializeField] float accelerationRate;
     [SerializeField] int targetEnginePower;
 
     Coroutine speedChange;
@@ -130,21 +130,21 @@ public class TrainSpeedController : MonoBehaviour
         trainSpeed = target;
     }
 
-    IEnumerator ReleaseSteamFromEngine(float coalConsumption)
-    {
-        float timeElapsed=0f;
-        coalConsumptionRate -= coalConsumption;
-        float target = trainSpeed - (coalConsumptionRate * accelerationRate);
+    // IEnumerator ReleaseSteamFromEngine(float coalConsumption)
+    // {
+    //     float timeElapsed=0f;
+    //     coalConsumptionRate -= coalConsumption;
+    //     float target = trainSpeed - (coalConsumptionRate * accelerationRate);
 
 
-        while(timeElapsed<reactionDelay)
-        {
-            wagonClassifier.Speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        wagonClassifier.Speed = target;
-    }
+    //     while(timeElapsed<reactionDelay)
+    //     {
+    //         wagonClassifier.Speed = Mathf.Lerp(trainSpeed, target, timeElapsed/reactionDelay);
+    //         timeElapsed += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     wagonClassifier.Speed = target;
+    // }
 
         IEnumerator StopEngine()
     {

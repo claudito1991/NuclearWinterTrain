@@ -42,8 +42,21 @@ public class Inventory : MonoBehaviour
 
     private void AddCoal(int obj)
     {
-        totalCoal += obj;
-        pressureLevel.AddPressure(obj);
+        if(totalCoal<pressureLevel.MaxPressure)
+        {
+            totalCoal += obj * energyConversionModifier;
+            pressureLevel.AddPressure(obj* energyConversionModifier);
+        }
+        else
+        {
+            totalCoal = maxPressure;
+        }
+        if(totalCoal>pressureLevel.MaxPressure)
+        {
+            totalCoal = maxPressure;
+        }
+  
+        
         coalUI.UpdateCoalInUI(((int)totalCoal));
     }
 

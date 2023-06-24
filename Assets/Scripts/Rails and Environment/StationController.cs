@@ -39,7 +39,7 @@ public class StationController : MonoBehaviour
 
     private void SlowDownTrain()
     {
-        Debug.Log("Slow down train");
+        //Debug.Log("Slow down train");
         foreach(WagonClassifier wagon in wagonClassifiers)
         {
             wagon.Speed = 0;
@@ -48,7 +48,7 @@ public class StationController : MonoBehaviour
 
     private void ShowStationInventory(bool stationInvState)
     {
-        Debug.Log("Trigger bool " + stationInvState.ToString());
+        //Debug.Log("Trigger bool " + stationInvState.ToString());
         stationInventory.SetActive(stationInvState);
         sendResButtonUI.SetActive(stationInvState);
         sendRosourcesToStation.AssignThisButton();

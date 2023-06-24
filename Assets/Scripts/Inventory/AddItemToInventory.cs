@@ -39,7 +39,7 @@ public class AddItemToInventory : MonoBehaviour
     public void AddThisItemToTrain()
     {
         trainInventory.AddItem(itemToPickUp,coal); 
-        Debug.Log("here");
+        //Debug.Log("here");
     }
 
     public void GenerateItemOnStation()

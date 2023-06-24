@@ -18,7 +18,7 @@ public class EngineDetection : MonoBehaviour
             isTrainInStation = true;
             //FireStationTrigger(isTrainInStation);
             TrainInStation?.Invoke(isTrainInStation);
-            Debug.Log("Triggered enter station");
+            //Debug.Log("Triggered enter station");
             
         }
     }
@@ -30,7 +30,7 @@ public class EngineDetection : MonoBehaviour
             isTrainInStation = false;
             //FireStationTrigger(isTrainInStation);
             TrainInStation?.Invoke(isTrainInStation);
-            Debug.Log("Triggered exit station");
+            //Debug.Log("Triggered exit station");
             
         }
     }
