@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     ShowCoalUI coalUI;
     [SerializeField] PressureBar pressureBar;
-    PressureLevel pressureLevel;
+     [SerializeField] PressureLevel pressureLevel;
     public float totalCoal;
     public float totalPressure;
     public float pressureLossRate;
@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     {
         //inventory = FindObjectOfType<Inventory>();
         coalUI = FindObjectOfType<ShowCoalUI>();
-        pressureLevel = FindObjectOfType<PressureLevel>();
+        //pressureLevel = FindObjectOfType<PressureLevel>();
 
         coalUI.UpdateCoalInUI(((int)totalCoal));
     }

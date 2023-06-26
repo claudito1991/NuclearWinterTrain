@@ -10,7 +10,7 @@ public class StationController : MonoBehaviour
     [SerializeField] EngineDetection engineDetection;
     [SerializeField] List<WagonClassifier> wagonClassifiers;
 
-    [SerializeField] Image stationImageUI;
+    [SerializeField] GameObject stationImageUI;
 
     private SendRosourcesToStation sendRosourcesToStation;
 
@@ -52,7 +52,7 @@ public class StationController : MonoBehaviour
         stationInventory.SetActive(stationInvState);
         sendResButtonUI.SetActive(stationInvState);
         sendRosourcesToStation.AssignThisButton();
-        stationImageUI.enabled = stationInvState;
+        stationImageUI.SetActive(stationInvState);
         stationInvIsActive = stationInvState;  
     }
 

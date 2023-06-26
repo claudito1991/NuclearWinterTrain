@@ -6,6 +6,7 @@ TagManager:
   tags:
   - train
   - station
+  - gameover
   layers:
   - Default
   - TransparentFX
