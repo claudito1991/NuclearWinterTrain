@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
             if(Physics.Raycast(ray, out hit, 100f,whatToDetect))
             {
                 hit.transform.GetComponent<AddItemToInventory>().AddThisItemToTrain();
-                Destroy (hit.transform.gameObject);
+                hit.transform.gameObject.GetComponent<MeshRenderer>().enabled=false;
+                Destroy (hit.transform.gameObject,1f);
                 
             }
         }

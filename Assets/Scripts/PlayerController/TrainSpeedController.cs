@@ -7,6 +7,9 @@ using Dreamteck.Splines;
 public class TrainSpeedController : MonoBehaviour
 {
     [SerializeField] float trainSpeed;
+    [SerializeField] AudioSource trainAudioSource;
+    [SerializeField] ContainMusic musicContainer;
+     [SerializeField] AudioSource engineAudioSource;
     
     public float TrainSpeed {
         get{return trainSpeed;}
@@ -38,7 +41,12 @@ public class TrainSpeedController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(trainSpeed>0 && !engineAudioSource.isPlaying)
+        {
+            engineAudioSource.Play();
+        }
         //ConsumeCoal(coalStock);
+
         if(inventory.totalCoal > 0)
         {
             if(Input.GetKeyUp(KeyCode.W))
@@ -80,15 +88,24 @@ public class TrainSpeedController : MonoBehaviour
             }
             if(value>0)
             {
-                speedChange =  StartCoroutine(FuelToEngine(value*trainSpeedModifier));
+            speedChange = StartCoroutine(FuelToEngine(value * trainSpeedModifier));
+            PlayTrainAcelerationSFX();
+
             }
             else
             {
                 speedChange =  StartCoroutine(FuelToEngine(value));
+                PlayTrainAcelerationSFX();
             }
-           
         }
 
+    private void PlayTrainAcelerationSFX()
+    {
+        if (!trainAudioSource.isPlaying)
+        {
+            trainAudioSource.PlayOneShot(musicContainer.audioClips[6]);
+        }
+    }
 
     void OnDisable()
     {

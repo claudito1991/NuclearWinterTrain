@@ -11,6 +11,8 @@ public class AddItemToInventory : MonoBehaviour
     public inventoryType currentInventory; 
     public Item itemToPickUp;
 
+    public AudioSource thisAudioSource;
+    public ContainMusic musicContainer;
     public enum inventoryType{
         TRAIN, 
         STATION
@@ -23,6 +25,7 @@ public class AddItemToInventory : MonoBehaviour
         //trainInventory = FindObjectOfType<InventoryManager>();
         trainInventory = GameObject.FindWithTag("train").GetComponent<InventoryManager>();
         stationInventory = GameObject.FindWithTag("station").GetComponent<InventoryManager>();
+        musicContainer = FindObjectOfType<ContainMusic>();
     }
     // Start is called before the first frame update
     
@@ -38,7 +41,9 @@ public class AddItemToInventory : MonoBehaviour
 
     public void AddThisItemToTrain()
     {
+        thisAudioSource.PlayOneShot(musicContainer.audioClips[7]);
         trainInventory.AddItem(itemToPickUp,coal); 
+        
         //Debug.Log("here");
     }
 

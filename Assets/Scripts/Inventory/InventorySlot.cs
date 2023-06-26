@@ -6,6 +6,9 @@ using System;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
+    [SerializeField] ContainMusic musicContainer;
+    [SerializeField] AudioSource boilerAudioSource;
+
     public static Action <int> AddCoalToInventory;
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
@@ -20,6 +23,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+            
             if(draggableItem.itemType != ItemType.Energy)
             {
                 Destroy(dropped);
@@ -27,6 +31,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             int coal = dropped.GetComponent<DraggableItem>().count;
             draggableItem.parentAfterDrag = transform;
             AddCoalToInventory?.Invoke(coal);
+            boilerAudioSource.PlayOneShot(musicContainer.audioClips[0]);
             Destroy(dropped);
             //Debug.Log("IN BOILER " + coal.ToString());
 
