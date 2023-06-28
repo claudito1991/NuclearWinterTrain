@@ -9,7 +9,8 @@ public class TrainSpeedController : MonoBehaviour
     [SerializeField] float trainSpeed;
     [SerializeField] AudioSource trainAudioSource;
     [SerializeField] ContainMusic musicContainer;
-     [SerializeField] AudioSource engineAudioSource;
+    [SerializeField] AudioSource engineAudioSource;
+    [SerializeField] BreakTrainOverTime breakTrainOverTime;
     
     public float TrainSpeed {
         get{return trainSpeed;}
@@ -36,6 +37,7 @@ public class TrainSpeedController : MonoBehaviour
     {
         inventory = FindObjectOfType<Inventory>();
         wagonClassifier.Speed = trainSpeed;
+
     }
 
     // Update is called once per frame

@@ -8,6 +8,7 @@ public class BreakTrainOverTime : MonoBehaviour
     [SerializeField] PressureLevel pressureLevel;
     [SerializeField] TrainSpeedController trainSpeedController;
 
+    [SerializeField] GameObject gameOverScreen;
     [SerializeField] int breakDC;
     [SerializeField] bool checkTrainMoving;
     [SerializeField] float engineCheckCooldown;
@@ -16,10 +17,13 @@ public class BreakTrainOverTime : MonoBehaviour
     [SerializeField] int midDC;
     [SerializeField] int maxDC;
     [SerializeField] float currentTime;
+
+    [SerializeField] bool trainBroken;
+    public bool TrainBroken { get{ return trainBroken;}}
     // Start is called before the first frame update
     void Start()
     {
-
+        trainBroken = false;
     }
 
     // Update is called once per frame
@@ -32,7 +36,7 @@ public class BreakTrainOverTime : MonoBehaviour
     {
         if(trainSpeed>0)
         {
-        currentTime += Time.deltaTime;
+            currentTime += Time.deltaTime;
 
             if(cooldown<=currentTime)
             {
@@ -42,6 +46,7 @@ public class BreakTrainOverTime : MonoBehaviour
 
                 if(diceRes >= breakDC)
                 {
+                    trainBroken = false;
                     Debug.Log("Egine fail");
                     DestroyGear();
                 }
@@ -78,6 +83,9 @@ public class BreakTrainOverTime : MonoBehaviour
     private void WithoutGearsStopEngine()
     {
         Debug.Log("STOPPING ENGINE NO SPARE PARTS LEFT");
+        trainBroken = true;
+        gameOverScreen.SetActive(true);
+        gameOverScreen.GetComponent<OnGameOverScreen>().WhyYouWillLose("No spare parts left");
     }
 
     private void DestroyGearEquipped(DraggableItem itemSelected)

@@ -65,6 +65,7 @@ public class StationData : MonoBehaviour
         {
             coalInStation = 0;
             gameOverScreen.SetActive(true);
+            gameOverScreen.GetComponent<OnGameOverScreen>().WhyYouWillLose("CITY FROZEN");
         }
         
     }

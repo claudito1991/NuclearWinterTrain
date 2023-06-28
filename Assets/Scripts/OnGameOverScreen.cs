@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class OnGameOverScreen : MonoBehaviour
 {
     [SerializeField] List<GameObject> listaInventarios;
+    [SerializeField] TextMeshProUGUI whyYouLose;
 
     void Start()
     {
@@ -26,6 +28,12 @@ public class OnGameOverScreen : MonoBehaviour
         {
             obj.SetActive(true);
         }
+        WhyYouWillLose("");
+    }
+
+    public void WhyYouWillLose(string loseCondition)
+    {
+        whyYouLose.text = loseCondition;
     }
 
 }
