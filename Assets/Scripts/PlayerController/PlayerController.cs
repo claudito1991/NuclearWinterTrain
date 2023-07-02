@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
             {
                 hit.transform.GetComponent<AddItemToInventory>().AddThisItemToTrain();
                 hit.transform.gameObject.GetComponent<MeshRenderer>().enabled=false;
-                Destroy (hit.transform.gameObject,1f);
+                Destroy (hit.transform.gameObject,0.2f);
                 
             }
         }
