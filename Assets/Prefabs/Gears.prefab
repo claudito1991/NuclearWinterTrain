@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 96866646852025303}
   - component: {fileID: -8277608701589891903}
   - component: {fileID: 5133512966599281881}
+  - component: {fileID: -1291126908505737167}
   m_Layer: 3
   m_Name: Gears
   m_TagString: Untagged
@@ -65,7 +66,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d33a20bee4a539a4187d6ea077965d8c, type: 2}
+  - {fileID: 2100000, guid: c78f688a4ab99734aa3cec5ad26790cf, type: 2}
+  - {fileID: 2100000, guid: 42e135d75355370419e541b1b2582af4, type: 2}
+  - {fileID: 2100000, guid: 7f77229f0e36b9f47ab4c795cd152bc7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,3 +233,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &-1291126908505737167
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564180543326974004}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
