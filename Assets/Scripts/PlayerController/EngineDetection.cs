@@ -13,7 +13,8 @@ public class EngineDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<WagonClassifier>().isEngine)
+        WagonClassifier wagonClassifier = other.GetComponent<WagonClassifier>();
+        if (wagonClassifier != null && wagonClassifier.isEngine)
         {
             isTrainInStation = true;
             //FireStationTrigger(isTrainInStation);
@@ -25,7 +26,8 @@ public class EngineDetection : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<WagonClassifier>().isEngine)
+        WagonClassifier wagonClassifier = other.GetComponent<WagonClassifier>();
+        if (wagonClassifier != null && wagonClassifier.isEngine)
         {
             isTrainInStation = false;
             //FireStationTrigger(isTrainInStation);
