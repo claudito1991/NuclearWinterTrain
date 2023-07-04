@@ -19,6 +19,7 @@ public class StationData : MonoBehaviour
     [SerializeField] int stationCoalConsumptionRate;
     [SerializeField] float coalConsumptionRateChangeCooldown;
     [SerializeField] float auxTime;
+    private GlobalTimer globalTimer;
 
     // Start is called before the first frame update
     public int RewardAmount()
@@ -32,6 +33,8 @@ public class StationData : MonoBehaviour
     {
         stationNameUI.text = "Coal in "+ thisStationName;
         thisStationNameUI.text = thisStationName;
+        globalTimer = FindObjectOfType<GlobalTimer>();
+
     }
 
     void OnEnable()
@@ -50,7 +53,7 @@ public class StationData : MonoBehaviour
         auxTime += Time.deltaTime;
         if(auxTime>coalConsumptionRateChangeCooldown)
         {
-            stationCoalConsumptionRate = Random.Range(1,5);
+            stationCoalConsumptionRate = Random.Range(1,3);
         }
     }
 
