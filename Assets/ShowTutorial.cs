@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,13 +10,22 @@ public class ShowTutorial : MonoBehaviour
     [SerializeField] GameObject tutorialScreen;
 
 
-    [SerializeField] GameObject[] tutorialCards;
+    //[SerializeField] GameObject[] tutorialCards;
+    [SerializeField] List<GameObject> tutorialCards = new List<GameObject>();
     private int currentCardIndex;
+
     // Start is called before the first frame update
     void Start()
     {
+
         tutorialScreen.SetActive(false);
         currentCardIndex=0;
+        
+    }
+
+    void OnEnable()
+    {   
+        Debug.Log("tutorial cards length " +tutorialCards.Count.ToString());
     }
 
 
@@ -23,7 +33,7 @@ public class ShowTutorial : MonoBehaviour
     private void ResetTutorialCards()
     {
         currentCardIndex=0;
-        for(int i = 0; i<tutorialCards.Length;i++)
+        for(int i = 0; i<tutorialCards.Count;i++)
         {
             if(i==0)
             {
@@ -49,8 +59,9 @@ public class ShowTutorial : MonoBehaviour
 
     public void ShowNextCard()
     {
-        if(currentCardIndex < tutorialCards.Length-1)
+        if(currentCardIndex < tutorialCards.Count-1)
         {
+            
             tutorialCards[currentCardIndex].SetActive(false);
             tutorialCards[currentCardIndex+1].SetActive(true);
             currentCardIndex++;

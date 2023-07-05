@@ -44,8 +44,12 @@ public class StationData : MonoBehaviour
 
     void Update()
     {
-        ConsumeCoalOverTime();
-        ChangeCoalConsumptionRate();
+        if(!globalTimer.IsGameOver)
+        {
+            ConsumeCoalOverTime();
+            ChangeCoalConsumptionRate();
+        }
+
     }
 
     private void ChangeCoalConsumptionRate()
@@ -53,24 +57,38 @@ public class StationData : MonoBehaviour
         auxTime += Time.deltaTime;
         if(auxTime>coalConsumptionRateChangeCooldown)
         {
-            stationCoalConsumptionRate = Random.Range(1,3);
+            stationCoalConsumptionRate = Random.Range(1,5) + globalTimer.DifficultyRatio;
         }
     }
 
     private void ConsumeCoalOverTime()
     {
-        stationCoalUI.text = coalInStation.ToString("0");
-        if(coalInStation>0)
-        {
-            coalInStation -= stationCoalConsumptionRate * Time.deltaTime;
-        }
-        else
-        {
-            coalInStation = 0;
-            gameOverScreen.SetActive(true);
-            gameOverScreen.GetComponent<OnGameOverScreen>().WhyYouWillLose("CITY FROZEN");
-        }
+                stationCoalUI.text = coalInStation.ToString("0");
+                if(coalInStation>0)
+                {
+                    coalInStation -= stationCoalConsumptionRate * Time.deltaTime;
+                }
+                else
+                {
+                    coalInStation = 0;
+                    if(!gameOverScreen.activeInHierarchy)
+                    {
+                        gameOverScreen.SetActive(true);
+                        gameOverScreen.GetComponent<OnGameOverScreen>().WhyYouWillLose("CITY FROZEN");
+                        //
+                        StartCoroutine(losing());
+                        Debug.Log("triggered Lose cond.");
+                    }
+
+                }
         
+    }
+
+    IEnumerator losing()
+    {
+        yield return new WaitForSeconds(5f);
+        globalTimer.SetGameState(true);
+
     }
 
     public Vector3 GenerateCoordinate()

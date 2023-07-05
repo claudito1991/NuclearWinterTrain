@@ -19,6 +19,7 @@ public class OnGameOverScreen : MonoBehaviour
         foreach( GameObject obj in listaInventarios)
         {
             obj.SetActive(false);
+            Debug.Log("called enable");
         }
     }
 
@@ -27,12 +28,14 @@ public class OnGameOverScreen : MonoBehaviour
         foreach( GameObject obj in listaInventarios)
         {
             obj.SetActive(true);
+            Debug.Log("called disable");
         }
         WhyYouWillLose("");
     }
 
     public void WhyYouWillLose(string loseCondition)
     {
+        Debug.Log("on game over called");
         whyYouLose.text = loseCondition;
     }
 
