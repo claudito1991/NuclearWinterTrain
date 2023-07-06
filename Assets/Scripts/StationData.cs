@@ -14,7 +14,6 @@ public class StationData : MonoBehaviour
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] Transform stationRewardPosition;
     [SerializeField] string thisStationName;
-    [SerializeField] float rewardRatio;
     [SerializeField] float maxCoordinate;
     [SerializeField] int stationCoalConsumptionRate;
     [SerializeField] float coalConsumptionRateChangeCooldown;
@@ -25,7 +24,7 @@ public class StationData : MonoBehaviour
     public int RewardAmount()
     {
         //+ (int)(coalInStation * rewardRatio)
-        int reward = Random.Range(1,2);
+        int reward = Random.Range(0,2);
         return reward;
     }
 

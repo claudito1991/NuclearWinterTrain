@@ -31,6 +31,7 @@ public class TrainSpeedController : MonoBehaviour
     Inventory inventory;
     [SerializeField] float reactionDelay;
     [SerializeField] private int trainSpeedModifier;
+    private float zeroSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -83,22 +84,32 @@ public class TrainSpeedController : MonoBehaviour
 
     public void SpeedChanged(int value )
         {
-            if(speedChange != null)
-            {
-                StopCoroutine(speedChange);
-                speedChange = null;
-            }
-            if(value>0)
-            {
-            speedChange = StartCoroutine(FuelToEngine(value * trainSpeedModifier));
-            PlayTrainAcelerationSFX();
-
-            }
-            else
-            {
-                speedChange =  StartCoroutine(FuelToEngine(value));
+                if(speedChange != null)
+                {
+                    StopCoroutine(speedChange);
+                    speedChange = null;
+                }
+                if(breakTrainOverTime.TrainBroken)
+                {
+                    zeroSpeed = 0f;
+                }
+                else
+                {
+                    zeroSpeed = 1f;
+                }
+   
+                if(value>0)
+                {
+                speedChange = StartCoroutine(FuelToEngine(value * trainSpeedModifier * zeroSpeed));
                 PlayTrainAcelerationSFX();
-            }
+
+                }
+                else
+                {
+                    speedChange =  StartCoroutine(FuelToEngine(value * zeroSpeed));
+                    PlayTrainAcelerationSFX();
+                }
+
         }
 
     private void PlayTrainAcelerationSFX()

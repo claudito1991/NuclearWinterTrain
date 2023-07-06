@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] ContainMusic musicContainer;
     [SerializeField] AudioSource boilerAudioSource;
+    [SerializeField] AudioSource manteinanceAudioSource;
 
     public static Action <int> AddCoalToInventory;
     void IDropHandler.OnDrop(PointerEventData eventData)
@@ -40,6 +41,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+            manteinanceAudioSource.PlayOneShot(musicContainer.audioClips[9]);
             if(draggableItem.itemType != ItemType.SpareParts)
             {
                 Destroy(dropped);

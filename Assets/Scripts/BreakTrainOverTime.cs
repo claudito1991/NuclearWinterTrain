@@ -7,7 +7,8 @@ public class BreakTrainOverTime : MonoBehaviour
     [SerializeField] InventorySlot[] slotsInManteinanceInv;
     [SerializeField] PressureLevel pressureLevel;
     [SerializeField] TrainSpeedController trainSpeedController;
-
+    [SerializeField] AudioSource manteinanceAudioSource; 
+    [SerializeField] ContainMusic musicContainer;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] int breakDC;
     [SerializeField] bool checkTrainMoving;
@@ -24,45 +25,51 @@ public class BreakTrainOverTime : MonoBehaviour
     void Start()
     {
         trainBroken = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckEngineState(engineCheckCooldown, trainSpeedController.TrainSpeed);
+        CheckEngineState(engineCheckCooldown);
+        CheckGearInInventory();
     }
 
-    public void CheckEngineState(float cooldown, float trainSpeed)
+    private void CheckGearInInventory()
     {
-        if(trainSpeed>0)
+        if(GetGearEquipped(slotsInManteinanceInv)!= null)
         {
+            trainBroken = false;
+        }
+        else
+        {
+            trainBroken = true;
+        }
+    }
+
+    public void CheckEngineState(float cooldown)
+    {
             currentTime += Time.deltaTime;
 
-            if(cooldown<=currentTime)
+            if(cooldown<=currentTime && trainSpeedController.TrainSpeed>0f)
             {
             int diceRes = throwDice();
             int breakDC = BreakDC(pressureLevel, minDC,midDC,maxDC);
-            Debug.Log("dice result: " + diceRes.ToString());
+            //Debug.Log("dice result: " + diceRes.ToString());
 
                 if(diceRes >= breakDC)
                 {
-                    trainBroken = false;
-                    Debug.Log("Egine fail");
+                    //trainBroken = false;
+                    //Debug.Log("Egine fail "+"Break DC "+ breakDC.ToString()+" Dice result: "+diceRes.ToString());
                     DestroyGear();
                 }
                 else
                 {
-                    Debug.Log("Nothing happens");
+                    //Debug.Log("Nothing happens");
                 } 
 
             currentTime = 0;
             }
-
-        }
-        else
-        {
-            currentTime=0;
-        }
 
     }
 
@@ -71,7 +78,10 @@ public class BreakTrainOverTime : MonoBehaviour
         DraggableItem itemSelected = GetGearEquipped(slotsInManteinanceInv);
         if(itemSelected != null)
         {
+            //trainBroken = false;
+            
             DestroyGearEquipped(itemSelected);
+            // este codigo de audio no funciona manteinanceAudioSource.PlayOneShot(musicContainer.audioClips[10]);
         }
         else
         {
@@ -82,15 +92,14 @@ public class BreakTrainOverTime : MonoBehaviour
 
     private void WithoutGearsStopEngine()
     {
-        Debug.Log("STOPPING ENGINE NO SPARE PARTS LEFT");
+        //Debug.Log("STOPPING ENGINE NO SPARE PARTS LEFT");
         trainBroken = true;
-        gameOverScreen.SetActive(true);
-        gameOverScreen.GetComponent<OnGameOverScreen>().WhyYouWillLose("No spare parts left");
     }
 
     private void DestroyGearEquipped(DraggableItem itemSelected)
     {
         Destroy(itemSelected.gameObject);
+        
     }
 
     private DraggableItem GetGearEquipped(InventorySlot[] listItemsActive)

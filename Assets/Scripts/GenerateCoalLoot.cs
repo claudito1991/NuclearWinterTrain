@@ -7,6 +7,7 @@ public class GenerateCoalLoot : MonoBehaviour
     [SerializeField] Collider collider;
     [SerializeField] GameObject coalStack;
     [SerializeField] float coalGenerationCooldown;
+    [SerializeField] Renderer thisRenderer;
     float currentTime;
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,13 @@ public class GenerateCoalLoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         GenerateStackOverTime();
-        
+        thisRenderer = GetComponentInChildren<Renderer>();
+        if(thisRenderer.isVisible)
+        {
+            //Debug.Log("visible " + gameObject.name);
+        }
     }
 
     private void GenerateStackOverTime()

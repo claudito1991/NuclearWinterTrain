@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-            Debug.DrawRay(ray.origin, ray.direction* 100f, Color.cyan,1f);
+            Debug.DrawRay(ray.origin, ray.direction* 20f, Color.cyan,1f);
             if(Physics.Raycast(ray, out hit, 100f,whatToDetect))
             {
                 hit.transform.GetComponent<AddItemToInventory>().AddThisItemToTrain();
