@@ -37,11 +37,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             //Debug.Log("IN BOILER " + coal.ToString());
 
         }
-            if(transform.GetComponent<MaintenanceInventory>())
+            if(transform.GetComponent<MaintenanceInventory>() && transform.childCount==0)
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-            manteinanceAudioSource.PlayOneShot(musicContainer.audioClips[9]);
+            manteinanceAudioSource.PlayOneShot(musicContainer.audioClips[8]);
             if(draggableItem.itemType != ItemType.SpareParts)
             {
                 Destroy(dropped);
@@ -54,7 +54,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
         }
 
-        if(transform.GetComponent<StationInventory>())
+        if(transform.GetComponent<StationInventory>() && transform.childCount==0)
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();

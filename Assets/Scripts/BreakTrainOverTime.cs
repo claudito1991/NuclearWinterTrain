@@ -81,7 +81,7 @@ public class BreakTrainOverTime : MonoBehaviour
             //trainBroken = false;
             
             DestroyGearEquipped(itemSelected);
-            // este codigo de audio no funciona manteinanceAudioSource.PlayOneShot(musicContainer.audioClips[10]);
+            manteinanceAudioSource.PlayOneShot(musicContainer.audioClips[9]);
         }
         else
         {

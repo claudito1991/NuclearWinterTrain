@@ -8,6 +8,7 @@ TagManager:
   - station
   - gameover
   - tutorial
+  - GameMusic
   layers:
   - Default
   - TransparentFX
