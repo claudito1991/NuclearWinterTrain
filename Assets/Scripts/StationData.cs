@@ -30,7 +30,7 @@ public class StationData : MonoBehaviour
 
     void Start()
     {
-        stationNameUI.text = "Coal in "+ thisStationName;
+        stationNameUI.text = thisStationName + " St.";
         thisStationNameUI.text = thisStationName;
         globalTimer = FindObjectOfType<GlobalTimer>();
 
